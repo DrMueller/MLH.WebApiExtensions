@@ -4,6 +4,12 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <Features>IOperation</Features>
     <CodeAnalysisRuleSet>..\..\CA_ProductionCode.ruleset</CodeAnalysisRuleSet>
+    <Authors>DrMueller</Authors>
+    <Company>DrMuellerDrMueller</Company>
+    <Product>MyLittleHelpers.WebApiExtensions</Product>
+    <Description>DrMuellers little WebAPI Extensions</Description>
+    <PackageIconUrl>https://raw.githubusercontent.com/DrMueller/MLH.WebApiExtensions/master/Sources/Application/Infrastructure/Assets/M.png</PackageIconUrl>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <AssemblyVersion Condition="'$(BUILD_BUILDNUMBER)' != '' ">$(BUILD_BUILDNUMBER)</AssemblyVersion>
     <FileVersion Condition="'$(BUILD_BUILDNUMBER)' != '' ">$(BUILD_BUILDNUMBER)</FileVersion>
     <Version Condition="'$(BUILD_BUILDNUMBER)' != '' ">$(BUILD_BUILDNUMBER)</Version>
@@ -22,6 +28,10 @@
     <PackageReference Include="Mmu.Mlh.LanguageExtensions" Version="1.2.15" />
     <PackageReference Include="NLog.Web.AspNetCore" Version="4.6.0" />
     <PackageReference Include="StructureMap.Microsoft.DependencyInjection" Version="1.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Infrastructure\Assets\" />
   </ItemGroup>
 
 </Project>
