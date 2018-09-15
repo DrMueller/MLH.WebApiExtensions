@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Mmu.Mlh.WebApiExtensions.Areas.Web.Security.Authorization.PolicyProvisioning;
 
@@ -6,23 +7,23 @@ namespace Mmu.Mlh.WebApiExtensions.Areas.Web.Initialization.ServiceInitializatio
 {
     internal class AuthorizationInitializationService : IAuthorizationInitializationService
     {
-        private readonly IPolicyProviderResolver _policyProviderResolver;
+        private readonly IPolicyProvider[] _policyProviders;
 
-        public AuthorizationInitializationService(IPolicyProviderResolver policyProviderResolver)
+        public AuthorizationInitializationService(IPolicyProvider[] policyProviders)
         {
-            _policyProviderResolver = policyProviderResolver;
+            _policyProviders = policyProviders;
         }
 
         public async Task InitializeAsync(IServiceCollection services)
         {
-            Task task = null;
+            Task[] tasks = null;
             services.AddAuthorization(
                 options =>
                 {
-                    task = _policyProviderResolver.ConfigurePoliciesAsync(options);
+                    tasks = _policyProviders.Select(p => p.ConfigurePoliciesAsync(options)).ToArray();
                 });
 
-            await task;
+            await Task.WhenAll(tasks);
         }
     }
 }

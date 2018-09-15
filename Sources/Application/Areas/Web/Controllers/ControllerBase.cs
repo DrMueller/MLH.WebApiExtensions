@@ -14,28 +14,28 @@ namespace Mmu.Mlh.WebApiExtensions.Areas.Web.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAsync([FromRoute] string id)
+        public virtual async Task<IActionResult> DeleteAsync([FromRoute] string id)
         {
             await _dataService.DeleteAsync(id);
             return Ok();
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllAsync()
+        public virtual async Task<IActionResult> GetAllAsync()
         {
             var dtos = await _dataService.LoadAllAsync();
             return Ok(dtos);
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetByIdAsync(string id)
+        public virtual async Task<IActionResult> GetByIdAsync(string id)
         {
             var dto = await _dataService.LoadByIdAsync(id);
             return Ok(dto);
         }
 
         [HttpPut]
-        public async Task<IActionResult> SaveAsync([FromBody] TDto dto)
+        public virtual async Task<IActionResult> SaveAsync([FromBody] TDto dto)
         {
             var returnedResult = await _dataService.SaveAsync(dto);
             return Ok(returnedResult);

@@ -6,7 +6,7 @@ namespace Mmu.Mlh.WebApiExtensions.Areas.Web.Initialization.ServiceInitializatio
     internal static class WebSettingsInitializationServant
     {
         internal static void InitializeWebSettings<TWebSettings>(ServiceConfig serviceConfig)
-            where TWebSettings: class
+            where TWebSettings : class
         {
             var configSection = serviceConfig.Configuration.GetSection(serviceConfig.AppSettingsSectionKey);
             serviceConfig.Services.Configure<TWebSettings>(configSection);

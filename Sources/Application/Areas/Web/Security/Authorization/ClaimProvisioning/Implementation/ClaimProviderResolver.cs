@@ -8,8 +8,14 @@ namespace Mmu.Mlh.WebApiExtensions.Areas.Web.Security.Authorization.ClaimProvisi
     {
         private readonly IClaimProvider[] _claimProviders;
 
-        public ClaimProviderResolver(IClaimProvider[] claimProviders) => _claimProviders = claimProviders;
+        public ClaimProviderResolver(IClaimProvider[] claimProviders)
+        {
+            _claimProviders = claimProviders;
+        }
 
-        public IReadOnlyCollection<Claim> ProvideClaims(string userId) => _claimProviders.SelectMany(f => f.ProvideClaims(userId)).ToList();
+        public IReadOnlyCollection<Claim> ProvideClaims(string userId)
+        {
+            return _claimProviders.SelectMany(f => f.ProvideClaims(userId)).ToList();
+        }
     }
 }

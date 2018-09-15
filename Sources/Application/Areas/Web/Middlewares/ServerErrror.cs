@@ -20,6 +20,9 @@ namespace Mmu.Mlh.WebApiExtensions.Areas.Web.Middlewares
         public string StackTrace { get; }
         public string TypeName { get; }
 
-        public static ServerError CreateFromException(Exception ex) => new ServerError(ex.Message, ex.GetType().Name, ex.StackTrace);
+        public static ServerError CreateFromException(Exception ex)
+        {
+            return new ServerError(ex.Message, ex.GetType().Name, ex.StackTrace);
+        }
     }
 }

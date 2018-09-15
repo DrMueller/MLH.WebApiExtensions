@@ -3,8 +3,6 @@ using Mmu.Mlh.WebApiExtensions.Areas.Web.Initialization.ServiceInitialization.Se
 using Mmu.Mlh.WebApiExtensions.Areas.Web.Initialization.ServiceInitialization.Services.Servants.Implementation;
 using Mmu.Mlh.WebApiExtensions.Areas.Web.Security.Authorization.ClaimProvisioning;
 using Mmu.Mlh.WebApiExtensions.Areas.Web.Security.Authorization.ClaimProvisioning.Implementation;
-using Mmu.Mlh.WebApiExtensions.Areas.Web.Security.Authorization.PolicyProvisioning;
-using Mmu.Mlh.WebApiExtensions.Areas.Web.Security.Authorization.PolicyProvisioning.Implementation;
 using StructureMap;
 
 namespace Mmu.Mlh.WebApiExtensions.Infrastructure.DepencyInjection
@@ -21,7 +19,6 @@ namespace Mmu.Mlh.WebApiExtensions.Infrastructure.DepencyInjection
                 });
 
             For<IHttpContextAccessor>().Use<HttpContextAccessor>().Singleton();
-            For<IPolicyProviderResolver>().Use<PolicyProviderResolver>();
             For<IClaimProviderResolver>().Use<ClaimProviderResolver>();
             For<IAuthenticationInitializationService>().Use<AuthenticationInitializationService>();
             For<IAuthorizationInitializationService>().Use<AuthorizationInitializationService>();
