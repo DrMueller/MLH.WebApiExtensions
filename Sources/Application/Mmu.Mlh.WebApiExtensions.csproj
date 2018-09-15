@@ -23,8 +23,8 @@
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="5.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.1" />
     <PackageReference Include="Mmu.Mlh.ApplicationExtensions" Version="1.0.36" />
-    <PackageReference Include="Mmu.Mlh.DataAccess" Version="1.0.14" />
-    <PackageReference Include="Mmu.Mlh.DomainExtensions" Version="1.0.15" />
+    <PackageReference Include="Mmu.Mlh.DataAccess" Version="1.0.16" />
+    <PackageReference Include="Mmu.Mlh.DomainExtensions" Version="1.0.16" />
     <PackageReference Include="Mmu.Mlh.LanguageExtensions" Version="1.2.15" />
     <PackageReference Include="NLog.Web.AspNetCore" Version="4.6.0" />
     <PackageReference Include="StructureMap.Microsoft.DependencyInjection" Version="1.4.0" />

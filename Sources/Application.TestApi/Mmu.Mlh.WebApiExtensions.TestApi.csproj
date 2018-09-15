@@ -11,8 +11,8 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Mmu.Mlh.ApplicationExtensions" Version="1.0.36" />
-    <PackageReference Include="Mmu.Mlh.DataAccess" Version="1.0.14" />
-    <PackageReference Include="Mmu.Mlh.DomainExtensions" Version="1.0.15" />
+    <PackageReference Include="Mmu.Mlh.DataAccess" Version="1.0.16" />
+    <PackageReference Include="Mmu.Mlh.DomainExtensions" Version="1.0.16" />
     <PackageReference Include="Mmu.Mlh.LanguageExtensions" Version="1.2.15" />
   </ItemGroup>
 

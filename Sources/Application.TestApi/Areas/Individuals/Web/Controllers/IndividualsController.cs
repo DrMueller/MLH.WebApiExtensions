@@ -6,7 +6,7 @@ using Mmu.Mlh.WebApiExtensions.TestApi.Areas.Individuals.App.Dtos;
 
 namespace Mmu.Mlh.WebApiExtensions.TestApi.Areas.Individuals.Web.Controllers
 {
-    [Authorize]
+    [AllowAnonymous]
     [Route("api/[controller]")]
     public class IndividualsController : ControllerBase<IndividualDto>
     {
