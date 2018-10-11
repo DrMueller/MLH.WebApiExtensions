@@ -1,9 +1,9 @@
 ﻿using System;
-using Mmu.Mlh.WebApiExtensions.Areas.App.Dtos.Models;
+using Mmu.Mlh.ApplicationExtensions.Areas.DtoHandling.Models;
 
 namespace Mmu.Mlh.WebApiExtensions.TestApi.Areas.Individuals.App.Dtos
 {
-    public class IndividualDto : IDto
+    public class IndividualDto : IDto<string>
     {
         public DateTime Birthdate { get; set; }
         public string FirstName { get; set; }

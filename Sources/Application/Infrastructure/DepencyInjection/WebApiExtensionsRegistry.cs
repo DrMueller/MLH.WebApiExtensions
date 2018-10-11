@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Mmu.Mlh.WebApiExtensions.Areas.Web.Initialization.ServiceInitialization.Services.Servants;
-using Mmu.Mlh.WebApiExtensions.Areas.Web.Initialization.ServiceInitialization.Services.Servants.Implementation;
-using Mmu.Mlh.WebApiExtensions.Areas.Web.Security.Authorization.ClaimProvisioning;
-using Mmu.Mlh.WebApiExtensions.Areas.Web.Security.Authorization.ClaimProvisioning.Implementation;
+using Mmu.Mlh.WebApiExtensions.Areas.Initialization.ServiceInitialization.Services.Servants;
+using Mmu.Mlh.WebApiExtensions.Areas.Initialization.ServiceInitialization.Services.Servants.Implementation;
+using Mmu.Mlh.WebApiExtensions.Areas.Security.Authorization.ClaimProvisioning;
+using Mmu.Mlh.WebApiExtensions.Areas.Security.Authorization.ClaimProvisioning.Implementation;
 using StructureMap;
 
 namespace Mmu.Mlh.WebApiExtensions.Infrastructure.DepencyInjection

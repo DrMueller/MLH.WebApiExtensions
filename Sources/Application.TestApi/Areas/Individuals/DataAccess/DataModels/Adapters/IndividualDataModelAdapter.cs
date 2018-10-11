@@ -5,7 +5,7 @@ using Mmu.Mlh.WebApiExtensions.TestApi.Areas.Individuals.Domain.Models;
 
 namespace Mmu.Mlh.WebApiExtensions.TestApi.Areas.Individuals.DataAccess.DataModels.Adapters
 {
-    public class IndividualDataModelAdapter : DataModelAdapterBase<IndividualDataModel, Individual>
+    public class IndividualDataModelAdapter : DataModelAdapterBase<IndividualDataModel, Individual, string>
     {
         private readonly IIndividualFactory _individualFactory;
 

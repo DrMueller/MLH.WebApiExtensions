@@ -1,13 +1,13 @@
 ﻿using Microsoft.Extensions.Options;
-using Mmu.Mlh.DataAccess.Areas.DatabaseAccess.Models;
-using Mmu.Mlh.DataAccess.Areas.DatabaseAccess.Services;
-using Mmu.Mlh.WebApiExtensions.Areas.App.Settings.Models;
-using Mmu.Mlh.WebApiExtensions.Areas.App.Settings.Services;
+using Mmu.Mlh.DataAccess.MongoDb.Infrastructure.Settings.Models;
+using Mmu.Mlh.DataAccess.MongoDb.Infrastructure.Settings.Services;
+using Mmu.Mlh.WebApiExtensions.Infrastructure.Settings.Models;
+using Mmu.Mlh.WebApiExtensions.Infrastructure.Settings.Services;
 using Mmu.Mlh.WebApiExtensions.TestApi.Infrastructure.Settings.Models;
 
 namespace Mmu.Mlh.WebApiExtensions.TestApi.Infrastructure.Settings.Services
 {
-    public class WebSettingsProvider : ISecuritySettingsProvider, IDatabaseSettingsProvider
+    public class WebSettingsProvider : ISecuritySettingsProvider, IMongoDbSettingsProvider
     {
         private readonly IOptions<WebSettings> _webSettingsOptions;
 
@@ -16,9 +16,9 @@ namespace Mmu.Mlh.WebApiExtensions.TestApi.Infrastructure.Settings.Services
             _webSettingsOptions = webSettingsOptions;
         }
 
-        public DatabaseSettings ProvideDatabaseSettings()
+        public MongoDbSettings ProvideMongoDbSettings()
         {
-            return _webSettingsOptions.Value.DatabaseSettings;
+            return _webSettingsOptions.Value.MongoDbSettings;
         }
 
         public SecuritySettings ProvideSecuritySettings()

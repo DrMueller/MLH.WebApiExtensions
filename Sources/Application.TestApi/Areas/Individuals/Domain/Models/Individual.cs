@@ -4,8 +4,12 @@ using Mmu.Mlh.LanguageExtensions.Areas.Invariance;
 
 namespace Mmu.Mlh.WebApiExtensions.TestApi.Areas.Individuals.Domain.Models
 {
-    public class Individual : AggregateRoot
+    public class Individual : AggregateRoot<string>
     {
+        public DateTime Birthdate { get; }
+        public string FirstName { get; }
+        public string LastName { get; }
+
         public Individual(string id, string firstName, string lastName, DateTime birthdate)
             : base(id)
         {
@@ -16,9 +20,5 @@ namespace Mmu.Mlh.WebApiExtensions.TestApi.Areas.Individuals.Domain.Models
             LastName = lastName;
             Birthdate = birthdate;
         }
-
-        public DateTime Birthdate { get; }
-        public string FirstName { get; }
-        public string LastName { get; }
     }
 }

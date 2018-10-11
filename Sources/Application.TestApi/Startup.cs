@@ -4,16 +4,18 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Mmu.Mlh.WebApiExtensions.Areas.Web.Initialization.AppInitialization.Models;
-using Mmu.Mlh.WebApiExtensions.Areas.Web.Initialization.AppInitialization.Services;
-using Mmu.Mlh.WebApiExtensions.Areas.Web.Initialization.ServiceInitialization.Models;
-using Mmu.Mlh.WebApiExtensions.Areas.Web.Initialization.ServiceInitialization.Services;
+using Mmu.Mlh.WebApiExtensions.Areas.Initialization.AppInitialization.Models;
+using Mmu.Mlh.WebApiExtensions.Areas.Initialization.AppInitialization.Services;
+using Mmu.Mlh.WebApiExtensions.Areas.Initialization.ServiceInitialization.Models;
+using Mmu.Mlh.WebApiExtensions.Areas.Initialization.ServiceInitialization.Services;
 using Mmu.Mlh.WebApiExtensions.TestApi.Infrastructure.Settings.Models;
 
 namespace Mmu.Mlh.WebApiExtensions.TestApi
 {
     public class Startup
     {
+        public IConfigurationRoot Configuration { get; }
+
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
@@ -23,8 +25,6 @@ namespace Mmu.Mlh.WebApiExtensions.TestApi
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
         }
-
-        public IConfigurationRoot Configuration { get; }
 
         public static void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {

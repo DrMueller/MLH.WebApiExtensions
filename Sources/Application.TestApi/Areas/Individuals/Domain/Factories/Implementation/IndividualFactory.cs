@@ -6,9 +6,9 @@ namespace Mmu.Mlh.WebApiExtensions.TestApi.Areas.Individuals.Domain.Factories.Im
 {
     public class IndividualFactory : IIndividualFactory
     {
-        private readonly IEntityIdFactory _entityIdFactory;
+        private readonly IEntityIdFactory<string> _entityIdFactory;
 
-        public IndividualFactory(IEntityIdFactory entityIdFactory)
+        public IndividualFactory(IEntityIdFactory<string> entityIdFactory)
         {
             _entityIdFactory = entityIdFactory;
         }
