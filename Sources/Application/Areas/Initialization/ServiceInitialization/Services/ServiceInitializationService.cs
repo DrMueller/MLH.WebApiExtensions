@@ -35,8 +35,6 @@ namespace Mmu.Mlh.WebApiExtensions.Areas.Initialization.ServiceInitialization.Se
             var container = ContainerInitializationService.CreateInitializedContainer(
                 AssemblyParameters.CreateFromAssembly(serviceConfig.BaseAssembly));
 
-            var tra = container.WhatDoIHave();
-
             container.Populate(serviceConfig.Services);
             var result = container.GetInstance<IServiceProvider>();
             return result;
