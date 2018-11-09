@@ -1,10 +1,12 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Mmu.Mlh.ApplicationExtensions.Areas.DtoHandling.Models;
 using Mmu.Mlh.ApplicationExtensions.Areas.DtoHandling.Services;
 
 namespace Mmu.Mlh.WebApiExtensions.Areas.Controllers
 {
     public abstract class ControllerBase<TDto, TId> : Controller
+        where TDto : DtoBase<TId>
     {
         private readonly IDtoDataService<TDto, TId> _dataService;
 
@@ -34,8 +36,16 @@ namespace Mmu.Mlh.WebApiExtensions.Areas.Controllers
             return Ok(dto);
         }
 
+        [HttpPost]
+        public virtual async Task<IActionResult> PostAsync([FromBody] TDto dto)
+        {
+            dto.Id = default(TId);
+            var returnedResult = await _dataService.SaveAsync(dto);
+            return Ok(returnedResult);
+        }
+
         [HttpPut]
-        public virtual async Task<IActionResult> SaveAsync([FromBody] TDto dto)
+        public virtual async Task<IActionResult> PutAsync([FromBody] TDto dto)
         {
             var returnedResult = await _dataService.SaveAsync(dto);
             return Ok(returnedResult);

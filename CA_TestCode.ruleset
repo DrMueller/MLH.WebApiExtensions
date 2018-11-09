@@ -34,6 +34,7 @@
     <Rule Id="CA1822" Action="None" />
     <Rule Id="CA1823" Action="None" />
     <Rule Id="CA2000" Action="None" />
+    <Rule Id="CA2007" Action="None" />
     <Rule Id="CA2100" Action="None" />
     <Rule Id="CA2104" Action="None" />
     <Rule Id="CA2109" Action="None" />
@@ -61,5 +62,19 @@
     <Rule Id="CA2240" Action="None" />
     <Rule Id="CA2241" Action="None" />
     <Rule Id="CA2243" Action="None" />
+  </Rules>
+  <Rules AnalyzerId="StyleCop.Analyzers" RuleNamespace="StyleCop.Analyzers">
+    <Rule Id="SA1516" Action="None" />
+    <Rule Id="SA1200" Action="None" />
+    <Rule Id="SA1652" Action="None" />
+    <Rule Id="SA1633" Action="None" />
+    <Rule Id="SA1201" Action="None" />
+    <Rule Id="SA1101" Action="None" />
+    <Rule Id="SA1633" Action="None" />
+    <Rule Id="SA1652" Action="None" />
+    <Rule Id="SA1200" Action="None" />
+    <Rule Id="SA1309" Action="None" />
+    <Rule Id="SA1128" Action="None" />
+    <Rule Id="SA1118" Action="None" />
   </Rules>
 </RuleSet>

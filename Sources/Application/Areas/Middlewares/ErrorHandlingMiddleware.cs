@@ -3,7 +3,7 @@ using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Mmu.Mlh.ApplicationExtensions.Areas.Logging.Services;
-using Mmu.Mlh.ApplicationExtensions.Areas.ServiceProvisioning;
+using Mmu.Mlh.ServiceProvisioning.Areas.Provisioning.Services;
 using Newtonsoft.Json;
 
 namespace Mmu.Mlh.WebApiExtensions.Areas.Middlewares
@@ -31,7 +31,7 @@ namespace Mmu.Mlh.WebApiExtensions.Areas.Middlewares
 
         private static void LogException(Exception exception)
         {
-            var loggingService = ProvisioningServiceSingleton.Instance.GetService<ILoggingService>();
+            var loggingService = ServiceLocatorSingleton.Instance.GetService<ILoggingService>();
             loggingService.LogException(exception);
         }
 

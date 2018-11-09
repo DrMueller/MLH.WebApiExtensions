@@ -31,8 +31,7 @@ namespace Mmu.Mlh.WebApiExtensions.Areas.Initialization.ServiceInitialization.Se
                     options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
                     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                }
-            );
+                });
 
             authenticationBuidler.AddJwtBearer(
                 options =>

@@ -1,9 +1,9 @@
 ﻿using System;
 using AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
-using Mmu.Mlh.ApplicationExtensions.Areas.DependencyInjection.Models;
-using Mmu.Mlh.ApplicationExtensions.Areas.DependencyInjection.Services;
 using Mmu.Mlh.LanguageExtensions.Areas.Invariance;
+using Mmu.Mlh.ServiceProvisioning.Areas.Initialization.Models;
+using Mmu.Mlh.ServiceProvisioning.Areas.Initialization.Services;
 using Mmu.Mlh.WebApiExtensions.Areas.Initialization.ServiceInitialization.Models;
 using Mmu.Mlh.WebApiExtensions.Areas.Initialization.ServiceInitialization.Services.Servants;
 using Mmu.Mlh.WebApiExtensions.Areas.Initialization.ServiceInitialization.Services.Servants.Implementation;
@@ -33,7 +33,7 @@ namespace Mmu.Mlh.WebApiExtensions.Areas.Initialization.ServiceInitialization.Se
         private static IServiceProvider CreateServiceProvider(ServiceConfig serviceConfig)
         {
             var container = ContainerInitializationService.CreateInitializedContainer(
-                AssemblyParameters.CreateFromAssembly(serviceConfig.BaseAssembly));
+                ContainerConfiguration.CreateFromAssembly(serviceConfig.BaseAssembly));
 
             container.Populate(serviceConfig.Services);
             var result = container.GetInstance<IServiceProvider>();
