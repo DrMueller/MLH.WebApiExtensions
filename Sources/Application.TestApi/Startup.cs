@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes;
 using Mmu.Mlh.WebApiExtensions.Areas.Initialization.AppInitialization.Models;
 using Mmu.Mlh.WebApiExtensions.Areas.Initialization.AppInitialization.Services;
 using Mmu.Mlh.WebApiExtensions.Areas.Initialization.ServiceInitialization.Models;
@@ -34,7 +35,7 @@ namespace Mmu.Mlh.WebApiExtensions.TestApi
 
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            var serviceConfig = new ServiceConfig(services, Configuration, typeof(Startup).Assembly);
+            var serviceConfig = new ServiceConfig(services, Configuration, typeof(Startup).Assembly, Maybe.CreateNone<Action<Exception>>());
             return ServiceInitializationService.InitializeServices<WebSettings>(serviceConfig);
         }
     }

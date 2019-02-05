@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Mmu.Mlh.ApplicationExtensions.Areas.Logging.Services;
 using Mmu.Mlh.ServiceProvisioning.Areas.Provisioning.Services;
+using Mmu.Mlh.WebApiExtensions.Areas.ExceptionHandling.Services;
 using Newtonsoft.Json;
 
 namespace Mmu.Mlh.WebApiExtensions.Areas.Middlewares
@@ -17,51 +18,17 @@ namespace Mmu.Mlh.WebApiExtensions.Areas.Middlewares
             _next = next;
         }
 
-        public async Task Invoke(HttpContext context)
+        public async Task Invoke(HttpContext httpContext)
         {
             try
             {
-                await _next(context);
+                await _next(httpContext);
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                await WriteExceptionAsync(context, ex, HttpStatusCode.InternalServerError).ConfigureAwait(false);
+                var exceptionHandler = ServiceLocatorSingleton.Instance.GetService<IExceptionHandler>();
+                await exceptionHandler.HandleExceptionAsync(httpContext, exception);
             }
-        }
-
-        private static void LogException(Exception exception)
-        {
-            var loggingService = ServiceLocatorSingleton.Instance.GetService<ILoggingService>();
-            loggingService.LogException(exception);
-        }
-
-        private static Exception UnwrapException(Exception exception)
-        {
-            while (true)
-            {
-                var result = exception;
-                if (result.InnerException == null || !(exception is AggregateException))
-                {
-                    return result;
-                }
-
-                exception = result.InnerException;
-            }
-        }
-
-        private static async Task WriteExceptionAsync(HttpContext context, Exception exception, HttpStatusCode code)
-        {
-            var response = context.Response;
-            response.ContentType = "application/json";
-            response.StatusCode = (int)code;
-
-            exception = UnwrapException(exception);
-            LogException(exception);
-
-            var serverError = ServerError.CreateFromException(exception);
-            var serializedServerError = JsonConvert.SerializeObject(serverError);
-
-            await response.WriteAsync(serializedServerError);
         }
     }
 }

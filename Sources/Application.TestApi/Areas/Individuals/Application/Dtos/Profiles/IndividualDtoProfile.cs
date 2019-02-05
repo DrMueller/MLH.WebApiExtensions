@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Mmu.Mlh.WebApiExtensions.TestApi.Areas.Individuals.Domain.Models;
 
-namespace Mmu.Mlh.WebApiExtensions.TestApi.Areas.Individuals.App.Dtos.Profiles
+namespace Mmu.Mlh.WebApiExtensions.TestApi.Areas.Individuals.Application.Dtos.Profiles
 {
     public class IndividualDtoProfile : Profile
     {

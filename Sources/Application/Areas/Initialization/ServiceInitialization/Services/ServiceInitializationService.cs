@@ -2,8 +2,10 @@
 using AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
 using Mmu.Mlh.LanguageExtensions.Areas.Invariance;
+using Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes;
 using Mmu.Mlh.ServiceProvisioning.Areas.Initialization.Models;
 using Mmu.Mlh.ServiceProvisioning.Areas.Initialization.Services;
+using Mmu.Mlh.WebApiExtensions.Areas.ExceptionHandling.Services;
 using Mmu.Mlh.WebApiExtensions.Areas.Initialization.ServiceInitialization.Models;
 using Mmu.Mlh.WebApiExtensions.Areas.Initialization.ServiceInitialization.Services.Servants;
 using Mmu.Mlh.WebApiExtensions.Areas.Initialization.ServiceInitialization.Services.Servants.Implementation;
@@ -25,9 +27,11 @@ namespace Mmu.Mlh.WebApiExtensions.Areas.Initialization.ServiceInitialization.Se
 
             serviceConfig.Services.AddMvc();
 
-            var result = CreateServiceProvider(serviceConfig);
+            var serviceProvider = CreateServiceProvider(serviceConfig);
 
-            return result;
+            InitializeExceptionHandling(serviceProvider, serviceConfig.ExceptionCallback);
+
+            return serviceProvider;
         }
 
         private static IServiceProvider CreateServiceProvider(ServiceConfig serviceConfig)
@@ -53,6 +57,12 @@ namespace Mmu.Mlh.WebApiExtensions.Areas.Initialization.ServiceInitialization.Se
                                 .AllowAnyHeader()
                                 .AllowCredentials());
                 });
+        }
+
+        private static void InitializeExceptionHandling(IServiceProvider serviceProvider, Maybe<Action<Exception>> serviceConfigExceptionCallback)
+        {
+            var exceptionCallbackService = serviceProvider.GetService<IExceptionCallbackService>();
+            exceptionCallbackService.InitializeCallback(serviceConfigExceptionCallback);
         }
 
         private static void InitializeSecurity(ServiceConfig serviceConfig)

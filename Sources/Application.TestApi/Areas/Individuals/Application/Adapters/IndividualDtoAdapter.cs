@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using Mmu.Mlh.ApplicationExtensions.Areas.DtoHandling.Services.Implementation;
-using Mmu.Mlh.WebApiExtensions.TestApi.Areas.Individuals.App.Dtos;
+using Mmu.Mlh.WebApiExtensions.TestApi.Areas.Individuals.Application.Dtos;
 using Mmu.Mlh.WebApiExtensions.TestApi.Areas.Individuals.Domain.Factories;
 using Mmu.Mlh.WebApiExtensions.TestApi.Areas.Individuals.Domain.Models;
 
-namespace Mmu.Mlh.WebApiExtensions.TestApi.Areas.Individuals.App.Adapters
+namespace Mmu.Mlh.WebApiExtensions.TestApi.Areas.Individuals.Application.Adapters
 {
     public class IndividualDtoAdapter : DtoAdapterBase<IndividualDto, Individual, string>
     {

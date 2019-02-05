@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Mmu.Mlh.WebApiExtensions.Areas.ExceptionHandling.Services;
+using Mmu.Mlh.WebApiExtensions.Areas.ExceptionHandling.Services.Implementation;
 using Mmu.Mlh.WebApiExtensions.Areas.Initialization.ServiceInitialization.Services.Servants;
 using Mmu.Mlh.WebApiExtensions.Areas.Initialization.ServiceInitialization.Services.Servants.Implementation;
 using Mmu.Mlh.WebApiExtensions.Areas.Security.Authorization.ClaimProvisioning;
@@ -22,6 +24,10 @@ namespace Mmu.Mlh.WebApiExtensions.Infrastructure.DepencyInjection
             For<IClaimProviderResolver>().Use<ClaimProviderResolver>();
             For<IAuthenticationInitializationService>().Use<AuthenticationInitializationService>();
             For<IAuthorizationInitializationService>().Use<AuthorizationInitializationService>();
+
+            // Error-Handling
+            For<IExceptionCallbackService>().Use<ExceptionCallbackService>().Singleton();
+            For<IExceptionHandler>().Use<ExceptionHandler>().Singleton();
         }
     }
 }

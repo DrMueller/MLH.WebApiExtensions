@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Mmu.Mlh.WebApiExtensions.Areas.Controllers;
-using Mmu.Mlh.WebApiExtensions.TestApi.Areas.Individuals.App.Dtos;
-using Mmu.Mlh.WebApiExtensions.TestApi.Areas.Individuals.App.Services;
+using Mmu.Mlh.WebApiExtensions.TestApi.Areas.Individuals.Application.Dtos;
+using Mmu.Mlh.WebApiExtensions.TestApi.Areas.Individuals.Application.Services;
 
 namespace Mmu.Mlh.WebApiExtensions.TestApi.Areas.Individuals.Web.Controllers
 {
