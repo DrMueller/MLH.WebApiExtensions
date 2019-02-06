@@ -18,9 +18,25 @@ namespace Mmu.Mlh.WebApiExtensions.Areas.Initialization.AppInitialization.Servic
             InitializeMiddlewares(appConfig.ApplicationBuilder);
             InitializeCors(appConfig.ApplicationBuilder);
             InitializeNlog(appConfig.HostingEnvironment, appConfig.LoggerFactory);
+            InitializeSwagger(appConfig);
 
             appConfig.ApplicationBuilder.UseAuthentication();
             appConfig.ApplicationBuilder.UseMvc();
+        }
+
+        private static void InitializeSwagger(AppConfig appConfig)
+        {
+            if (!appConfig.SwaggerAppConfig.AddSwagger)
+            {
+                return;
+            }
+
+            appConfig.ApplicationBuilder.UseSwagger();
+            appConfig.ApplicationBuilder.UseSwaggerUI(
+                c =>
+                {
+                    c.SwaggerEndpoint(appConfig.SwaggerAppConfig.RelativeSwaggerJsonPath, appConfig.SwaggerAppConfig.EndpointName);
+                });
         }
 
         private static void InitializeCors(IApplicationBuilder app)

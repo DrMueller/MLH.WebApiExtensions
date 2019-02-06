@@ -10,6 +10,7 @@ using Mmu.Mlh.WebApiExtensions.Areas.Initialization.ServiceInitialization.Models
 using Mmu.Mlh.WebApiExtensions.Areas.Initialization.ServiceInitialization.Services.Servants;
 using Mmu.Mlh.WebApiExtensions.Areas.Initialization.ServiceInitialization.Services.Servants.Implementation;
 using StructureMap;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Mmu.Mlh.WebApiExtensions.Areas.Initialization.ServiceInitialization.Services
 {
@@ -21,9 +22,11 @@ namespace Mmu.Mlh.WebApiExtensions.Areas.Initialization.ServiceInitialization.Se
             Guard.ObjectNotNull(() => serviceConfig);
 
             serviceConfig.Services.AddAutoMapper();
+
             WebSettingsInitializationServant.InitializeWebSettings<TWebSettings>(serviceConfig);
             InitializeSecurity(serviceConfig);
             InitializeCors(serviceConfig.Services);
+            InitializeSwagger(serviceConfig);
 
             serviceConfig.Services.AddMvc();
 
@@ -73,6 +76,24 @@ namespace Mmu.Mlh.WebApiExtensions.Areas.Initialization.ServiceInitialization.Se
 
             authenticationInitService.Initialize(serviceConfig.Services);
             authorizationInitService.InitializeAsync(serviceConfig.Services);
+        }
+
+        private static void InitializeSwagger(ServiceConfig serviceConfig)
+        {
+            if (serviceConfig.SwaggerServiceConfig.AddSwagger)
+            {
+                serviceConfig.Services.AddSwaggerGen(
+                    c =>
+                    {
+                        c.SwaggerDoc(
+                            serviceConfig.SwaggerServiceConfig.SwaggerVersion,
+                            new Info
+                            {
+                                Title = serviceConfig.SwaggerServiceConfig.Title,
+                                Version = serviceConfig.SwaggerServiceConfig.SwaggerVersion
+                            });
+                    });
+            }
         }
     }
 }

@@ -11,6 +11,7 @@ namespace Mmu.Mlh.WebApiExtensions.Areas.Initialization.ServiceInitialization.Mo
     {
         public string AppSettingsSectionKey { get; }
         public Assembly BaseAssembly { get; }
+        public SwaggerServiceConfig SwaggerServiceConfig { get; }
         public IConfiguration Configuration { get; }
         public Maybe<Action<Exception>> ExceptionCallback { get; }
         public IServiceCollection Services { get; }
@@ -19,18 +20,21 @@ namespace Mmu.Mlh.WebApiExtensions.Areas.Initialization.ServiceInitialization.Mo
             IServiceCollection services,
             IConfiguration configuration,
             Assembly baseAssembly,
+            SwaggerServiceConfig swaggerServiceConfig,
             Maybe<Action<Exception>> exceptionCallback,
             string appSettingsSectionKey = "AppSettings")
         {
             Guard.ObjectNotNull(() => services);
             Guard.ObjectNotNull(() => configuration);
             Guard.ObjectNotNull(() => baseAssembly);
+            Guard.ObjectNotNull(() => swaggerServiceConfig);
             Guard.ObjectNotNull(() => exceptionCallback);
             Guard.StringNotNullOrEmpty(() => appSettingsSectionKey);
 
             Services = services;
             Configuration = configuration;
             BaseAssembly = baseAssembly;
+            SwaggerServiceConfig = swaggerServiceConfig;
             ExceptionCallback = exceptionCallback;
             AppSettingsSectionKey = appSettingsSectionKey;
         }

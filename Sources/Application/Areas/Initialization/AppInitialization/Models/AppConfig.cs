@@ -10,19 +10,23 @@ namespace Mmu.Mlh.WebApiExtensions.Areas.Initialization.AppInitialization.Models
         public IApplicationBuilder ApplicationBuilder { get; }
         public IHostingEnvironment HostingEnvironment { get; }
         public ILoggerFactory LoggerFactory { get; }
+        public SwaggerAppConfig SwaggerAppConfig { get; }
 
         public AppConfig(
             IApplicationBuilder applicationBuilder,
             IHostingEnvironment hostingEnvironment,
-            ILoggerFactory loggerFactory)
+            ILoggerFactory loggerFactory,
+            SwaggerAppConfig swaggerAppConfig)
         {
             Guard.ObjectNotNull(() => applicationBuilder);
             Guard.ObjectNotNull(() => hostingEnvironment);
             Guard.ObjectNotNull(() => loggerFactory);
+            Guard.ObjectNotNull(() => swaggerAppConfig);
 
             ApplicationBuilder = applicationBuilder;
             HostingEnvironment = hostingEnvironment;
             LoggerFactory = loggerFactory;
+            SwaggerAppConfig = swaggerAppConfig;
         }
     }
 }

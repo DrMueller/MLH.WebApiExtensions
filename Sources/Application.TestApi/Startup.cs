@@ -29,13 +29,21 @@ namespace Mmu.Mlh.WebApiExtensions.TestApi
 
         public static void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            var config = new AppConfig(app, env, loggerFactory);
+            var swaggerConfig = new SwaggerAppConfig(true, "Test API");
+            var config = new AppConfig(app, env, loggerFactory, swaggerConfig);
             AppInitializationService.InitializeApplication(config);
         }
 
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            var serviceConfig = new ServiceConfig(services, Configuration, typeof(Startup).Assembly, Maybe.CreateNone<Action<Exception>>());
+            var swaggerServiceConfig = new SwaggerServiceConfig(true, "v1", "Hello Test API");
+            var serviceConfig = new ServiceConfig(
+                services,
+                Configuration,
+                typeof(Startup).Assembly,
+                swaggerServiceConfig,
+                Maybe.CreateNone<Action<Exception>>());
+
             return ServiceInitializationService.InitializeServices<WebSettings>(serviceConfig);
         }
     }

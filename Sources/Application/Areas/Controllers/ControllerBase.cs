@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Net;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Mmu.Mlh.ApplicationExtensions.Areas.DtoHandling.Models;
 using Mmu.Mlh.ApplicationExtensions.Areas.DtoHandling.Services;
@@ -16,36 +18,38 @@ namespace Mmu.Mlh.WebApiExtensions.Areas.Controllers
         }
 
         [HttpDelete("{id}")]
+        [ProducesResponseType((int)HttpStatusCode.NoContent)]
         public virtual async Task<IActionResult> DeleteAsync([FromRoute] TId id)
         {
             await _dataService.DeleteAsync(id);
-            return Ok();
+            return NoContent();
         }
 
         [HttpGet]
-        public virtual async Task<IActionResult> GetAllAsync()
+        public virtual async Task<ActionResult<IReadOnlyCollection<TDto>>> GetAllAsync()
         {
             var dtos = await _dataService.LoadAllAsync();
             return Ok(dtos);
         }
 
         [HttpGet("{id}")]
-        public virtual async Task<IActionResult> GetByIdAsync(TId id)
+        public virtual async Task<ActionResult<TDto>> GetByIdAsync(TId id)
         {
             var dto = await _dataService.LoadByIdAsync(id);
             return Ok(dto);
         }
 
         [HttpPost]
-        public virtual async Task<IActionResult> PostAsync([FromBody] TDto dto)
+        [ProducesResponseType((int)HttpStatusCode.Created)]
+        public virtual async Task<CreatedAtActionResult> PostAsync([FromBody] TDto dto)
         {
             dto.Id = default(TId);
             var returnedResult = await _dataService.SaveAsync(dto);
-            return Ok(returnedResult);
+            return CreatedAtAction("GetByIdAsync", new { id = returnedResult.Id }, returnedResult);
         }
 
         [HttpPut]
-        public virtual async Task<IActionResult> PutAsync([FromBody] TDto dto)
+        public virtual async Task<ActionResult<TDto>> PutAsync([FromBody] TDto dto)
         {
             var returnedResult = await _dataService.SaveAsync(dto);
             return Ok(returnedResult);

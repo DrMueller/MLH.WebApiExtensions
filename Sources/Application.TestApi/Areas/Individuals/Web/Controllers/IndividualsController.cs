@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Mmu.Mlh.WebApiExtensions.Areas.Controllers;
@@ -19,7 +20,7 @@ namespace Mmu.Mlh.WebApiExtensions.TestApi.Areas.Individuals.Web.Controllers
         }
 
         [HttpGet("FirstNames")]
-        public async Task<IActionResult> GetAllWithFirstNameMatthiasAsync()
+        public async Task<ActionResult<IReadOnlyCollection<IndividualDto>>> GetAllWithFirstNameMatthiasAsync()
         {
             var dtos = await _dataService.LoadMatthias2Async();
             return Ok(dtos);
