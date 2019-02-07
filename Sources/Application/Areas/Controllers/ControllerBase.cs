@@ -45,7 +45,7 @@ namespace Mmu.Mlh.WebApiExtensions.Areas.Controllers
         {
             dto.Id = default(TId);
             var returnedResult = await _dataService.SaveAsync(dto);
-            return CreatedAtAction("GetByIdAsync", new { id = returnedResult.Id }, returnedResult);
+            return CreatedAtAction(nameof(GetByIdAsync), new { id = returnedResult.Id }, returnedResult);
         }
 
         [HttpPut]
