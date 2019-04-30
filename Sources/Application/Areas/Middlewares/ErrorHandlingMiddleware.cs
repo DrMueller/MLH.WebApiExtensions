@@ -1,21 +1,19 @@
 ﻿using System;
-using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
-using Mmu.Mlh.ApplicationExtensions.Areas.Logging.Services;
-using Mmu.Mlh.ServiceProvisioning.Areas.Provisioning.Services;
 using Mmu.Mlh.WebApiExtensions.Areas.ExceptionHandling.Services;
-using Newtonsoft.Json;
 
 namespace Mmu.Mlh.WebApiExtensions.Areas.Middlewares
 {
     internal class ErrorHandlingMiddleware
     {
         private readonly RequestDelegate _next;
+        private readonly IExceptionHandler _exceptionHandler;
 
-        public ErrorHandlingMiddleware(RequestDelegate next)
+        public ErrorHandlingMiddleware(RequestDelegate next, IExceptionHandler exceptionHandler)
         {
             _next = next;
+            _exceptionHandler = exceptionHandler;
         }
 
         public async Task Invoke(HttpContext httpContext)
@@ -26,8 +24,7 @@ namespace Mmu.Mlh.WebApiExtensions.Areas.Middlewares
             }
             catch (Exception exception)
             {
-                var exceptionHandler = ServiceLocatorSingleton.Instance.GetService<IExceptionHandler>();
-                await exceptionHandler.HandleExceptionAsync(httpContext, exception);
+                await _exceptionHandler.HandleExceptionAsync(httpContext, exception);
             }
         }
     }
